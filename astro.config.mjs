@@ -17,8 +17,8 @@ const customScripts = [astroHello(), lifecycleLogs()];
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://example.com",
-  // site: "https://phedhong.github.io",
+  // site: "https://example.com",
+  site: "https://phedhong.github.io",
   integrations: [
     AutoImport({
       imports: [
