@@ -1,10 +1,6 @@
 import type { APIRoute } from "astro";
 
-import {
-  deleteResource,
-  addResource,
-  listResources,
-} from "@scripts/resources";
+import { deleteResource, addResource, listResources } from "@scripts/resources";
 
 export const del: APIRoute = async ({ request }) => {
   const title = new URL(request.url).searchParams.get("title");

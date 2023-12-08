@@ -1,5 +1,4 @@
-import kleur from "kleur";
-import type { AstroIntegration } from "astro";
+import { AstroIntegration } from "astro";
 
 const dateTimeFormat = new Intl.DateTimeFormat([], {
   hour: "2-digit",
@@ -7,23 +6,22 @@ const dateTimeFormat = new Intl.DateTimeFormat([], {
   second: "2-digit",
 });
 
-const logServerMessage = (message: string) => {
+const logServerMessage = (message) => {
   const date = dateTimeFormat.format(new Date());
-  console.log(`${kleur.gray(date)} ${kleur
-    .bold()
-    .cyan("[astro-hello-integration]")
-    } ${message}
-    `);
+  console.log(`${date} ${message}`);
 };
 
 // 👀 Introduce a default export function that returns the Astro
 // integration object.
-export default function helloIntegration(): AstroIntegration {
+export default function helloIntegration() {
   return {
     name: "astro-hello",
     hooks: {
       "astro:config:setup": (options) => {
-        options.injectScript("page", `import '/src/scripts/plugins/globalLog.js'`);
+        options.injectScript(
+          "page",
+          `import '/src/scripts/plugins/globalLog.js'`,
+        );
         logServerMessage("Injected script");
       },
     },

@@ -29,12 +29,19 @@ export default defineConfig({
       ],
     }),
     ...customScripts,
+    mdx(),
     preact(),
     svelte(),
     tailwind(),
-    mdx()
+
   ],
   markdown: {
-    remarkPlugins: [remarkDeruntify, remarkModifiedTime, remarkReadingTime, remarkFileType, remarkPublishedTime],
+    remarkPlugins: [
+      remarkDeruntify,
+      remarkModifiedTime,
+      remarkReadingTime,
+      remarkFileType,
+      remarkPublishedTime,
+    ],
   },
 });

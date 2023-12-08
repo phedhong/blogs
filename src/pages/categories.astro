@@ -1,21 +1,21 @@
 ---
 
-export const prerender = true;
-
 import Layout from '@layouts/Layout.astro';
 
-import {  categoryMaps } from "@layouts/constants"
+// import {  categoryMaps } from "@layouts/constants"
 
-	export async function getStaticPaths() {
+// 	export async function getStaticPaths() {
 
-		const categories = Object.keys(categoryMaps).map((category) => ({
-			params: {categories: category}
-		}))
+// 		const categories = Object.keys(categoryMaps).map((category) => ({
+// 			params: {categories: category}
+// 		}))
 
-		return categories
-	}
+// 		return categories
+// 	}
 
-	const {categories} = Astro.params
+// 	const {categories} = Astro.params
+
+const title = 'PlaceHolder'
 
 ---
 

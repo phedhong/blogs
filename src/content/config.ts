@@ -1,9 +1,7 @@
-import { defineCollection } from 'astro:content';
-import { rssSchema } from '@astrojs/rss';
+import { defineCollection } from "astro:content";
+import { rssSchema } from "@astrojs/rss";
 
 const posts = defineCollection({
-  type: 'content',
-
   schema: rssSchema,
 });
 

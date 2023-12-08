@@ -1,5 +1,4 @@
-
-import type { AstroIntegration } from "astro";
+import { AstroIntegration } from "astro";
 
 //Create a new dateTimeFormat object
 const dateTimeFormat = new Intl.DateTimeFormat([], {
@@ -20,10 +19,10 @@ export const lifecycleLogs = () => {
     `astro:build:generated`,
     `astro:build:ssr`,
     `astro:build:done`,
-  ] as const;
+  ];
 
   // base integration structure. "hooks" will be updated
-  let integration: AstroIntegration = {
+  let integration = {
     name: "astro-lifecycle-logs",
     hooks: {},
   };
@@ -34,9 +33,7 @@ export const lifecycleLogs = () => {
       // 👀 Get a new date string
       const date = dateTimeFormat.format(new Date());
 
-      // log with kleur colours and formatting
-      console.log(`${date}  ${hook}
-        `);
+      console.log(`${date}  ${hook}`);
     };
   }
 

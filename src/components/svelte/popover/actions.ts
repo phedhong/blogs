@@ -58,7 +58,8 @@ export function keyDown(
   const onKeyDown: EventListener = (event: Event) => {
     const e = event as KeyboardEvent;
 
-    const shiftCondition = shiftKey === "ignore" ||
+    const shiftCondition =
+      shiftKey === "ignore" ||
       (shiftKey === "never" && !e.shiftKey) ||
       (shiftKey === "always" && e.shiftKey);
 

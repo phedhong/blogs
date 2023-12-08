@@ -11,10 +11,6 @@ import {Alert}  from '@components/svelte/alert'
 const d = true;
 
 
-interface Props {
-	title: string;
-}
-
 const { title } = Astro.props.frontmatter || Astro.props;
 
 ---
@@ -23,8 +19,7 @@ const { title } = Astro.props.frontmatter || Astro.props;
   
   <SlotLayout> 
 
- <BaseHead {title} slot="common-head" /> 
-
+    <BaseHead {title} slot="common-head" /> 
 
     <Header slot="page-header" />
 
@@ -33,6 +28,7 @@ const { title } = Astro.props.frontmatter || Astro.props;
     <slot width="w-[100%]" />
 
     <Footer slot="page-footer" />
-    <Alert message={Object.keys(Astro)} client:visible />
+    
+    {d && <Alert message={Object.keys(Astro)} client:visible />}
 
   </SlotLayout>

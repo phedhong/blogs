@@ -1,14 +1,11 @@
+export type IconType = keyof typeof icons;
 
-
-export type IconType = keyof typeof icons
-
-  export type SocialObjects = {
-    name: IconType;
-    href: string;
-    active: boolean;
-    linkTitle: string;
-  }[];
-
+export type SocialObjects = {
+  name: IconType;
+  href: string;
+  active: boolean;
+  linkTitle: string;
+}[];
 
 export const icons = {
   Github: `<svg
@@ -219,4 +216,3 @@ export const icons = {
   q-46 -22 -127 -33q-74 -10 -166 -11h-3zM367 267q73 0 109 56l24 39l24 -39q36 -56 109 -56q63 0 101 43t38 117v239h-95v-232q0 -74 -61 -74q-69 0 -69 88v127h-94v-127q0 -88 -69 -88q-61 0 -61 74v232h-95v-239q0 -74 38 -117t101 -43z" />
   </svg>`,
 };
-

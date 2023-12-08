@@ -4,7 +4,6 @@ body {
   height: 100%;
 }
 
-
 body {
   margin: 0 auto;
 
@@ -14,10 +13,8 @@ body {
   color: snow;
 }
 
-
 div {
-  border: thin solid #F0F7D4;
+  border: thin solid #f0f7d4;
   margin: 0 atuo;
   padding: 2px;
-
 }

@@ -6,8 +6,9 @@ export default function LinkButton(
   return (
     <a
       {...props}
-      class={`inline-block cursor-pointer px-3 py-2 rounded hover:bg-gray-100 ${props.class ?? ""
-        }`}
+      class={`inline-block cursor-pointer px-3 py-2 rounded hover:bg-gray-100 ${
+        props.class ?? ""
+      }`}
     />
   );
 }

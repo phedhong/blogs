@@ -1,9 +1,8 @@
 ---
-export const prerender = true;
 
 import Layout from "@layouts/Layout.astro"
-import { mdxComponents } from "@components/astro/mdx/mdxComponents";
 import Toc from "@components/astro/Toc.astro";
+import { mdxComponents } from "@components/astro/mdx/mdxComponents";
 import { getCollection } from "astro:content";
 
 import dayjs from "dayjs";
@@ -12,13 +11,13 @@ dayjs.extend(utc);
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection('posts');
-  return blogEntries.map(entry => ({
-    params: { slug: entry.slug }, props: { entry },
+  return blogEntries.flatMap(entry => ({
+    params: { slug: entry.slug }, props: entry ,
   }));
 }
 
 const {slug}  = Astro.params;
-const { entry } = Astro.props;
+const entry  = Astro.props;
 
 const { Content, headings, remarkPluginFrontmatter } = await entry.render();
 
