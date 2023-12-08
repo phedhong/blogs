@@ -1,0 +1,37 @@
+---
+
+  import BaseHead from "@layouts/_elements/BaseHead.astro"
+
+  const bg = 'bg-gray-800';
+  const border = 'border border-zinc-700 ';
+  const text = 'text-gray-400 font-normal lg:text-xl dark:text-gray-400'
+  // Base Classes
+  const cBody = ` m-auto w-[90%] h-full ${bg} ${border} ${text}`;
+  const cFooter = '';
+  const cHeader ='';
+
+  const cMain = 'flex flex-1 mt-[5%] ';
+  const cPage = '  ';
+  const cSidebarLeft = ` overflow-x-hidden overflow-y-auto max-w-[10%] text-zinc-400 `
+  const cSidebarRight = `overflow-x-hidden overflow-y-auto max-w-[10%] text-zinc-400 `
+  
+  const {title = '(Title)' } = Astro.props
+
+---
+
+<html lang="en" class="dark">
+  <BaseHead />
+  <body class={cBody} >
+    <header> <Header transition:persist  class={cHeader } /> </header>
+    <main class={cMain} > 
+      <slot name="sidebar-left" class= {cSidebarLeft} > </slot> 
+      <div class={cPage} class="overscroll-auto" > <Head /> <slot /></div>
+      <slot name="sidebar-right" class={cSidebarRight}> </slot> 
+    </main>
+    <footer class={cFooter} ><Footer  /></footer>
+
+
+  </body>
+</html>
+
+

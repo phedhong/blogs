@@ -1,0 +1,36 @@
+---
+
+
+---
+
+<div class="media flipped">
+  <div class="image"><img src="MDN.svg" alt="MDN logo"></div>
+  <div class="content">This is the content of my media object. Items directly inside the flex container will be aligned to flex-start.</div>
+</div>
+
+
+<div class="media ">
+  <div class="image"><img src="MDN.svg" alt="MDN logo"></div>
+  <div class="content">This is the content of my media object. Items directly inside the flex container will be aligned to flex-start.</div>
+</div>
+
+<style>
+
+img {
+  max-width: 100%;
+}
+
+.media {
+  display: flex;
+  align-items: flex-start;
+}
+
+.media.flipped {
+  flex-direction: row-reverse;
+}
+
+.media .content {
+  flex: 1;
+  padding: 10px;
+}
+</style>

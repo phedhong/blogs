@@ -1,0 +1,105 @@
+---
+
+import BaseHead from "@layouts/_elements/BaseHead.astro"
+
+const bg = 'bg-gray-800';
+const border = 'border border-zinc-700 ';
+const text = 'text-gray-400 font-normal lg:text-xl dark:text-gray-400'
+// Base Classes
+const cBody = ` m-auto w-[90%] h-full ${bg} ${border} ${text}`;
+const cFooter = '';
+const cHeader ='';
+
+const cMain = 'flex flex-1 mt-[5%] ';
+const cPage = '  ';
+const cSidebarLeft = ` overflow-x-hidden overflow-y-auto max-w-[10%] text-zinc-400 `
+const cSidebarRight = `overflow-x-hidden overflow-y-auto max-w-[10%] text-zinc-400 `
+
+const {title = '(Title)' } = Astro.props
+
+---
+
+<!DOCTYPE html>
+
+<html lang="en" class="dark">
+	<head><BaseHead /></head>
+
+	
+	<body style="font-family:Verdana;color:#aaaaaa;">
+
+		<div style="background-color:#e5e5e5;padding:15px;text-align:center;">			
+			<slot name="header">  <h1>Hello World</h1> </slot>
+		</div>
+		
+		<main style="overflow:auto">
+
+			<div class="menu">
+				<slot name="left"> 
+
+				<a href="#">Link 1</a>
+				<a href="#">Link 2</a>
+				<a href="#">Link 3</a>
+				<a href="#">Link 4</a>
+			</slot>
+
+			</div>
+		
+			<div class="main">
+				<slot > 
+					<h2>Lorum Ipsum</h2>
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+				</slot>
+			</div>
+		
+			<div class="right">
+				<slot name="sidebar-right">
+					<h2>About</h2>
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+				</slot>
+			</div>
+		</main>
+		
+		<div style="background-color:#e5e5e5;text-align:center;padding:10px;margin-top:7px;">
+			<slot name="footer">(Footer)</slot>
+		</div>
+		
+	</body>
+		
+	</html>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		.menu {
+			float: left;
+			width: 20%;
+			text-align: center;
+		}
+		
+		.menu a {
+			background-color: #e5e5e5;
+			padding: 8px;
+			margin-top: 7px;
+			display: block;
+			width: 100%;
+			color: black;
+		}
+		
+		.main {
+			float: left;
+			width: 60%;
+			padding: 0 20px;
+		}
+		
+		.right {
+			background-color: #e5e5e5;
+			float: left;
+			width: 20%;
+			padding: 15px;
+			margin-top: 7px;
+			text-align: center;
+		}
+		
+
+	</style>

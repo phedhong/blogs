@@ -1,12 +1,15 @@
-import { APIRoute } from "astro";
+import type { APIRoute } from "astro";
 
-import { deleteResource, addResource, listResources } from "../../data/resources";
+import {
+  deleteResource,
+  addResource,
+  listResources,
+} from "@scripts/resources";
 
-export const del :APIRoute = async ({request}) => {
+export const del: APIRoute = async ({ request }) => {
   const title = new URL(request.url).searchParams.get("title");
-  if (!title) return new Response(null, { status: 400});
+  if (!title) return new Response(null, { status: 400 });
 
   await deleteResource(title);
-  return new Response(null, { status: 204});
-
-}
+  return new Response(null, { status: 204 });
+};

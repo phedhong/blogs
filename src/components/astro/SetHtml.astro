@@ -1,0 +1,13 @@
+---
+import SvelteRender from "./SvelteRender.svelte"
+import { PreactCounter } from './preact/PreactCounter';
+
+  const rawHTMLString = "Hello <strong>World</strong>"
+
+  const rawHtml = fetch('http://localhost:8000/about')
+console.log(rawHtml)
+---
+
+
+
+    <Fragment set:html={rawHtml}></Fragment>
