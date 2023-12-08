@@ -20,7 +20,7 @@ export default function remarkFileType() {
 
     const isDraft = file.data.astro.frontmatter.draft
       ? file.data.astro.frontmatter.draft
-      : false;
+      : true;
     file.data.astro.frontmatter.draft = isDraft;
   };
 }
