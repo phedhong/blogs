@@ -184,48 +184,92 @@ declare module 'astro:content' {
 	>;
 
 	type ContentEntryMap = {
-		"posts": {
+		"blogs": {
+"best-medium-format-camera-for-starting-out/index.md": {
+	id: "best-medium-format-camera-for-starting-out/index.md";
+  slug: "best-medium-format-camera-for-starting-out";
+  body: string;
+  collection: "blogs";
+  data: InferEntrySchema<"blogs">
+} & { render(): Render[".md"] };
+"data-fetching-with-react-server-components.mdx": {
+	id: "data-fetching-with-react-server-components.mdx";
+  slug: "data-fetching-with-react-server-components";
+  body: string;
+  collection: "blogs";
+  data: InferEntrySchema<"blogs">
+} & { render(): Render[".mdx"] };
+"great-post.md": {
+	id: "great-post.md";
+  slug: "great-post";
+  body: string;
+  collection: "blogs";
+  data: InferEntrySchema<"blogs">
+} & { render(): Render[".md"] };
+"post-1.md": {
+	id: "post-1.md";
+  slug: "post-1";
+  body: string;
+  collection: "blogs";
+  data: InferEntrySchema<"blogs">
+} & { render(): Render[".md"] };
+"post-2.mdx": {
+	id: "post-2.mdx";
+  slug: "post-2";
+  body: string;
+  collection: "blogs";
+  data: InferEntrySchema<"blogs">
+} & { render(): Render[".mdx"] };
+"post-4.md": {
+	id: "post-4.md";
+  slug: "post-4";
+  body: string;
+  collection: "blogs";
+  data: InferEntrySchema<"blogs">
+} & { render(): Render[".md"] };
+};
+"posts": {
 "best-medium-format-camera-for-starting-out/index.md": {
 	id: "best-medium-format-camera-for-starting-out/index.md";
   slug: "best-medium-format-camera-for-starting-out";
   body: string;
   collection: "posts";
-  data: InferEntrySchema<"posts">
+  data: any
 } & { render(): Render[".md"] };
 "data-fetching-with-react-server-components.mdx": {
 	id: "data-fetching-with-react-server-components.mdx";
   slug: "data-fetching-with-react-server-components";
   body: string;
   collection: "posts";
-  data: InferEntrySchema<"posts">
+  data: any
 } & { render(): Render[".mdx"] };
 "great-post.md": {
 	id: "great-post.md";
   slug: "great-post";
   body: string;
   collection: "posts";
-  data: InferEntrySchema<"posts">
+  data: any
 } & { render(): Render[".md"] };
 "post-1.md": {
 	id: "post-1.md";
   slug: "post-1";
   body: string;
   collection: "posts";
-  data: InferEntrySchema<"posts">
+  data: any
 } & { render(): Render[".md"] };
 "post-2.mdx": {
 	id: "post-2.mdx";
   slug: "post-2";
   body: string;
   collection: "posts";
-  data: InferEntrySchema<"posts">
+  data: any
 } & { render(): Render[".mdx"] };
 "post-4.md": {
 	id: "post-4.md";
   slug: "post-4";
   body: string;
   collection: "posts";
-  data: InferEntrySchema<"posts">
+  data: any
 } & { render(): Render[".md"] };
 };
 

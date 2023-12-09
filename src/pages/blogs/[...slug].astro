@@ -1,26 +1,26 @@
 ---
 
+import { getCollection } from 'astro:content';
+
 import Layout from "@layouts/Layout.astro"
 import Toc from "@components/astro/Toc.astro";
 import { mdxComponents } from "@components/astro/mdx/mdxComponents";
-import { getCollection } from "astro:content";
 
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 dayjs.extend(utc);
 
 export async function getStaticPaths() {
-  const blogEntries = await getCollection('posts');
-  return blogEntries.flatMap(entry => ({
-    params: { slug: entry.slug }, props: entry ,
+  const allPosts = await getCollection('blogs');
+  return allPosts.map((post) => ({
+    params: { slug: post.slug }, props: post ,
   }));
 }
 
 const {slug}  = Astro.params;
-const entry  = Astro.props;
+const post = Astro.props;
 
-const { Content, headings, remarkPluginFrontmatter } = await entry.render();
-
+const { Content, headings, remarkPluginFrontmatter } = await post.render();
 const lastModified = dayjs(remarkPluginFrontmatter.lastModified)
   .utc()
   .format("HH:mm:ss DD MMMM YYYY UTC");
@@ -28,12 +28,13 @@ const lastModified = dayjs(remarkPluginFrontmatter.lastModified)
 ---
 
 
-<Layout title={entry.data.title}>
-  <h1>{entry.data.title}</h1>
+<Layout title={post.data.title}>
+
+  <h1>{post.data.title}</h1>
   <p>{remarkPluginFrontmatter.minutesRead} </p>
   <p>{remarkPluginFrontmatter.draft} </p>
-
   <p>{lastModified} </p>
+
   <Content components={mdxComponents} />
 
   <Toc {headings}  />

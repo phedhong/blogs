@@ -1,6 +1,12 @@
 ---
 
+const components = await Astro.glob('./astro/**/*.astro');
 
 ---
 
 
+{components.map((component) => (
+  <div>
+    <component.default size={24} />
+  </div>
+))}

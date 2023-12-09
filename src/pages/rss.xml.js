@@ -18,9 +18,9 @@ export async function GET(context) {
     },
     customData: `<atom:link href="${context.site}rss.xml" rel="self" type="application/rss+xml" />`,
     items: posts.map((post) => ({
-      ...post.data,
-      link: `/blogs/${post.slug}/`,
+      link: `/blogs/${post.slug}`,
       content: sanitizeHtml(parser.render(post.body)),
+      ...post.data,
     })),
   });
 }

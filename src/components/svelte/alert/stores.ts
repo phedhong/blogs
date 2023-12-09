@@ -1,5 +1,8 @@
 import { writable } from "svelte/store";
 
+const TOAST_STORE_KEY = 'alertStore';
+
+
 export const alertStores = writable<string[]>([]);
 
 const durations = 30000;

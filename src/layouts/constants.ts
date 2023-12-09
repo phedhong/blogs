@@ -1,11 +1,21 @@
+
+
+const createStringPair: StringMap = (property: keyof StringMap, value: string) => {
+  return { [property]: value }
+}
 export const defaultCategory = "blogs";
+
 
 export const categoryMaps = {
   about: "about",
   components: "components",
   blogs: "blogs",
   docs: "docs",
+  tags: "tags",
+  rss: "rss.xml"
 };
+
+
 
 export const dbMaps = {
   components: "/examples/*/*.{astro, svelte, html,tsx, jsx}",

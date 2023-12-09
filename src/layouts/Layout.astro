@@ -1,12 +1,14 @@
 ---
 
-import SlotLayout from "./_slots/SlotLayout.astro"
+import '@styles/global.css'
+
+import GridAreaSlot from "./_slots/GridAreaSlot.astro"
 
 import BaseHead from "./_elements/BaseHead.astro"
 import Header from '@components/preact/Header'
 import Footer from '@components/preact/Footer'
 import Breadcrumbs from '@components/astro/Breadcrumbs.astro'
-import {Alert}  from '@components/svelte/alert'
+import {Alert, alert}  from '@components/svelte/alert'
 
 const d = true;
 
@@ -15,20 +17,32 @@ const { title } = Astro.props.frontmatter || Astro.props;
 
 ---
 
+<html lang="en" data-theme="dark">
+  <head> <BaseHead {title} /> </head>
 
-  
-  <SlotLayout> 
+  <body class="h-full grid grid-rows-[auto_1fr_auto] gap-1">
+    <Header />
+    <div class="overflow-y-auto"> <slot /></div>
+    <Footer  />
+  </body>
+        {d && <Alert client:visible />}
 
-    <BaseHead {title} slot="common-head" /> 
+</html>
 
-    <Header slot="page-header" />
 
-    <Breadcrumbs />
 
-    <slot width="w-[100%]" />
+<style is:global>
 
-    <Footer slot="page-footer" />
-    
-    {d && <Alert message={Object.keys(Astro)} client:visible />}
+  body {
+    margin: 0 auto;
+    width: 95vw;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--background-color);
+    color: var(--color);
+  }
 
-  </SlotLayout>
+  div {
+    border: thin solid var(--muted-color);
+    margin: 2px;
+  }
+</style>
