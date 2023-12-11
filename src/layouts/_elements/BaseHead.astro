@@ -1,19 +1,18 @@
 ---
+import { ViewTransitions } from 'astro:transitions'
 
-import { ViewTransitions } from 'astro:transitions';
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-
-const { title="(Title)", description = '(Description)', image='/favicon.svg' } = Astro.props;
-
+const { title = '(Title)', description = '(Description)', image = '/favicon.svg' } = Astro.props
 ---
 
 <!-- Primary Meta Tags -->
 <meta name="title" content={title} />
 <meta name="description" content={description} />
-<script src="https://unpkg.com/htmx.org@1.9.6" integrity="sha384-FhXw7b6AlE/jyjlZH5iHa/tTe9EpJ1Y55RjcgPbjeWMskSxZt1v9qkxLJWNJaGni" crossorigin="anonymous"></script>
-
-<ViewTransitions />
+<script
+	src="https://unpkg.com/htmx.org@1.9.6"
+	integrity="sha384-FhXw7b6AlE/jyjlZH5iHa/tTe9EpJ1Y55RjcgPbjeWMskSxZt1v9qkxLJWNJaGni"
+	crossorigin="anonymous"></script>
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
@@ -23,8 +22,6 @@ const { title="(Title)", description = '(Description)', image='/favicon.svg' } =
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
-
-
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
@@ -39,8 +36,3 @@ const { title="(Title)", description = '(Description)', image='/favicon.svg' } =
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
-
-
-
-
-

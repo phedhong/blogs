@@ -1,8 +1,8 @@
 ---
-title: "有史以来最好的文章"
-author: "Ben"
+title: '有史以来最好的文章'
+author: 'Ben'
 pubDate: 2021-07-08
-tags: ["post"]
+tags: ['post']
 ---
 
 Here is my _great_ post!

@@ -1,13 +1,13 @@
-type StringMap = { [key: String]: unknown };
+type StringMap = { [key: String]: unknown }
 
-type DynamicObject = { [key: string as `dynamic_${string}`]: string };
+// type DynamicObject = { [key: string as `dynamic_${string}`]: string };
 
-let obj: DynamicObject = { dynamic_key: "value" };
+// let obj: DynamicObject = { dynamic_key: "value" };
 
-console.log(obj);
+// console.log(obj);
 
-type Color = "red" | "green" | "blue"; 
-type HexColor<T extends Color> = `#${ string } `;
+// type Color = "red" | "green" | "blue";
+// type HexColor<T extends Color> = `#${ string } `;
 
-// Usage
-let myColor: HexColor<"blue"> = "#0000FF";
+// // Usage
+// let myColor: HexColor<"blue"> = "#0000FF";

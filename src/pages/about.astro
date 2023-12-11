@@ -1,69 +1,29 @@
 ---
+import Layout from '@layouts/Layout.astro'
+import Breadcrumbs from '@layouts/_elements/Breadcrumbs.astro'
 
-import Layout from '@layouts/Layout.astro';
-import Card from '@components/astro/Card.astro';
-import PreactCounter from '@components/preact/PreactCounter'
-import IslandCounter from '@components/preact/IslandCounter'
-import Greeting from '@components/preact/Greeting';
-
-import Form from "@components/astro/Form.astro"
-import { addResource, listResources } from "@scripts/resources.ts";
-import {type IResource} from "@scripts/resources.ts";
-import { signal } from '@preact/signals';
-
-const count = signal(0);
-
-
-if (Astro.request.method === "POST") {
-	try {
-		const data =await Astro.request.formData();
-		const resource: IResource = {
-			url: data.get("url")?.toString() || "",
-      title: data.get("title")?.toString() || "",
-      summary: data.get("summary")?.toString() || "",
-		};
-		await addResource(resource);
-	} catch (error) {
-		console.error(error)
-	}
-
-	return Astro.redirect('/');
-}
-
-const resources: IResource[] = await listResources();
-
+const hrefs = ['/api/chat', '/api/partial', '/api/form', '/api/todos']
 ---
 
+<script src="https://unpkg.com/htmx.org@1.8.5"></script>
+
 <Layout title="About">
+	<div slot="p-hd">
+		<h2 class="text-3xl font-extrabold capitalize leading-none tracking-tight">About</h2>
+		<Breadcrumbs />
+	</div>
 
+	<div slot="p-sd" class="grid">
+		<button class="" hx-get="/api/hello" hx-target="#response" hx-swap="innerHTML"> Prompt</button>
 
-  <!-- <Greeting client:visible messages={["Hej", "Hallo", "Hola", "Habari"]} />
+		{
+			hrefs.map((href) => (
+				<button class="" hx-post={href} hx-target="#response" hx-swap="innerHTML">
+					{href}
+				</button>
+			))
+		}
+	</div>
 
-	<IslandCounter client:visible > 
-			IslandCounter
-	</IslandCounter>
-
-	<IslandCounter client:visible > 
-		<p>This text is rendered on the server</p>
-	</IslandCounter>
-
-	<PreactCounter count={count} client:visible >
-		Preact Components 
-	</PreactCounter >
-
-	<PreactCounter count={count} client:visible >
-		Preact Components 2
-	</PreactCounter > -->
-
-	<ul role="list" class="link-card-grid">
-		{resources.map((resource) => (
-			<Card
-				href={resource.url}
-				title={resource.title}
-				body={resource.summary}
-			/>
-		))}
-	</ul>
+	<div id="response" class="my-4">I will be replaced by the response from the server.</div>
 </Layout>
-
-

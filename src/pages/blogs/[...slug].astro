@@ -1,42 +1,119 @@
 ---
+import { getCollection } from 'astro:content'
 
-import { getCollection } from 'astro:content';
+import Layout from '@layouts/Layout.astro'
+import Toc from '@components/astro/Toc.astro'
+import { mdxComponents } from '@components/astro/mdx/mdxComponents'
 
-import Layout from "@layouts/Layout.astro"
-import Toc from "@components/astro/Toc.astro";
-import { mdxComponents } from "@components/astro/mdx/mdxComponents";
-
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
-dayjs.extend(utc);
+import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
+dayjs.extend(utc)
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection('blogs');
-  return allPosts.map((post) => ({
-    params: { slug: post.slug }, props: post ,
-  }));
+	const allPosts = await getCollection('blogs')
+	return allPosts.map((post) => ({
+		params: { slug: post.slug },
+		props: post
+	}))
 }
 
-const {slug}  = Astro.params;
-const post = Astro.props;
+const { slug } = Astro.params
+const post = Astro.props
 
-const { Content, headings, remarkPluginFrontmatter } = await post.render();
+const { Content, headings, remarkPluginFrontmatter } = await post.render()
 const lastModified = dayjs(remarkPluginFrontmatter.lastModified)
-  .utc()
-  .format("HH:mm:ss DD MMMM YYYY UTC");
-
+	.utc()
+	.format('HH:mm:ss DD MMMM YYYY UTC')
 ---
 
-
 <Layout title={post.data.title}>
+	<Fragment slot="p-hd">
+		<h1>{post.data.title}</h1>
+		<p>{remarkPluginFrontmatter.minutesRead}</p>
+		<p>{remarkPluginFrontmatter.draft}</p>
+		<p>{lastModified}</p>
+	</Fragment>
+	<Content components={mdxComponents} />
 
-  <h1>{post.data.title}</h1>
-  <p>{remarkPluginFrontmatter.minutesRead} </p>
-  <p>{remarkPluginFrontmatter.draft} </p>
-  <p>{lastModified} </p>
+	<Toc {headings} slot="p-ad" />
 
-  <Content components={mdxComponents} />
+	<!-- Sidebar -->
+	<div
+		slot="p-ad"
+		class="lg:h-full lg:bg-gradient-to-r lg:from-gray-50 lg:via-transparent lg:to-transparent"
+	>
+		<div class="sticky start-0 top-0 py-3">
+			<!-- Avatar Media -->
+			<div class="group mb-8 flex items-center border-b border-gray-200 pb-8">
+				<a class="block flex-shrink-0" href="#">
+					<img
+						class="h-10 w-10 rounded-full"
+						src="https://images.unsplash.com/photo-1669837401587-f9a4cfe3126e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80"
+						alt="Image Description"
+					/>
+				</a>
 
-  <Toc {headings}  />
+				<a class="group block grow" href="">
+					<h5
+						class="text-sm font-semibold group-hover:text-gray-600 dark:text-gray-200 dark:group-hover:text-gray-400"
+					>
+						Leyla Ludic
+					</h5>
+					<p class="text-sm text-gray-500">UI/UX enthusiast</p>
+				</a>
 
+				<div>
+					<div class="flex justify-end">
+						<button
+							type="button"
+							class="inline-flex items-center gap-x-2 rounded-lg border border-transparent px-2.5 py-1.5 text-xs font-semibold hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+						>
+							<svg
+								class="h-4 w-4 flex-shrink-0"
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+								<circle cx="9" cy="7" r="4"></circle>
+								<line x1="19" x2="19" y1="8" y2="14"></line>
+								<line x1="22" x2="16" y1="11" y2="11"></line>
+							</svg>
+							 Follow
+						</button>
+					</div>
+				</div>
+			</div>
+			<!-- End Avatar Media -->
+
+			<div>
+				<!-- Media -->
+				<a class="group flex items-center" href="#">
+					<div>
+						<span
+							class="text-sm font-bold group-hover:text-blue-600 dark:text-gray-200 dark:group-hover:text-blue-500"
+						>
+							5 Reasons to
+						</span>
+					</div>
+
+					<div class="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-lg">
+						<img
+							class="absolute start-0 top-0 h-full w-full rounded-lg object-cover"
+							src="https://images.unsplash.com/photo-1567016526105-22da7c13161a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+							alt="Image Description"
+						/>
+					</div>
+				</a>
+				<!-- End Media -->
+			</div>
+		</div>
+	</div>
+	<!-- Sidebar -->
 </Layout>

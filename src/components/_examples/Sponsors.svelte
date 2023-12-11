@@ -1,14 +1,17 @@
-
 <script lang="ts">
-
 </script>
 
-<div class="flex flex-col lg:flex-row justify-center items-center gap-4 md:gap-10 place-items-center">
+<div
+	class="flex flex-col lg:flex-row justify-center items-center gap-4 md:gap-10 place-items-center"
+>
 	<!-- Premium Sponsors -->
 	<div class="grid grid-cols-2 gap-4 md:gap-10">
 		<!-- Brain & Bones -->
 
-		<div class="text-xs text-center card variant-filled-primary p-2 whitespace-nowrap shadow-xl" data-popup="popupBrainBones">
+		<div
+			class="text-xs text-center card variant-filled-primary p-2 whitespace-nowrap shadow-xl"
+			data-popup="popupBrainBones"
+		>
 			<p class="font-bold">Premium Sponsor</p>
 			<p>Brain & Bones</p>
 			<!-- Arrow -->
@@ -16,7 +19,10 @@
 		</div>
 		<!-- Luke -->
 
-		<div class="text-xs text-center card variant-filled-primary p-2 whitespace-nowrap shadow-xl" data-popup="popupLukeHagar">
+		<div
+			class="text-xs text-center card variant-filled-primary p-2 whitespace-nowrap shadow-xl"
+			data-popup="popupLukeHagar"
+		>
 			<p class="font-bold">Premium Sponsor</p>
 			<p>Luke Hagar</p>
 			<!-- Arrow -->
@@ -27,13 +33,35 @@
 	<div class="space-y-4 text-center lg:text-left">
 		<h2 class="h2">Help Support Skeleton.</h2>
 		<p class="max-w-[480px]">
-			Skeleton is an open source project that survives in part through your support. Consider becoming a sponsor through the following
-			services. For larger contributions please <a class="anchor" href="mailto:admin@skeleton.dev">contact us</a>.
+			Skeleton is an open source project that survives in part through your support. Consider
+			becoming a sponsor through the following services. For larger contributions please <a
+				class="anchor"
+				href="mailto:admin@skeleton.dev">contact us</a
+			>.
 		</p>
 		<div class="flex justify-center lg:justify-start gap-3">
-			<a class="btn variant-filled" href="https://ko-fi.com/skeletonlabs" target="_blank" rel="noreferrer">Ko-Fi</a>
-			<a class="btn variant-filled" href="https://github.com/sponsors/skeletonlabs" target="_blank" rel="noreferrer"> GitHub </a>
-			<a class="btn variant-filled" href="https://patreon.com/user?u=83786276" target="_blank" rel="noreferrer"> Patreon </a>
+			<a
+				class="btn variant-filled"
+				href="https://ko-fi.com/skeletonlabs"
+				target="_blank"
+				rel="noreferrer">Ko-Fi</a
+			>
+			<a
+				class="btn variant-filled"
+				href="https://github.com/sponsors/skeletonlabs"
+				target="_blank"
+				rel="noreferrer"
+			>
+				GitHub
+			</a>
+			<a
+				class="btn variant-filled"
+				href="https://patreon.com/user?u=83786276"
+				target="_blank"
+				rel="noreferrer"
+			>
+				Patreon
+			</a>
 		</div>
 	</div>
 </div>

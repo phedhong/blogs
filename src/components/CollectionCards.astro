@@ -1,12 +1,18 @@
 ---
+import { Debug } from 'astro:components'
+import Show from './Show.astro'
 
-const components = await Astro.glob('./astro/**/*.astro');
-
+const astrocomps = await Astro.glob('./_examples/*.html')
 ---
 
-
-{components.map((component) => (
-  <div>
-    <component.default size={24} />
-  </div>
-))}
+<div class="grid gap-3 lg:grid-cols-2">
+	{
+		astrocomps.map((component) => (
+			<Show>
+				<div>
+					<component.default size={24} />
+				</div>
+			</Show>
+		))
+	}
+</div>

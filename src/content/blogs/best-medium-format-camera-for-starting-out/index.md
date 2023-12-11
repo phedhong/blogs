@@ -1,10 +1,10 @@
 ---
-title: "Best Medium Format Camera for Starting Out"
+title: 'Best Medium Format Camera for Starting Out'
 author: Astro 学习者
-description: "asdfasdff"
-imageUrl: "/src/content/blogs/best-medium-format-camera-for-starting-out/best-medium-format-camera-for-starting-out.jpg"
-tags: ["successes"]
-pubDate: "2022-03-05T15:38:49.000+0100"
+description: 'asdfasdff'
+imageUrl: '/src/content/blogs/best-medium-format-camera-for-starting-out/best-medium-format-camera-for-starting-out.jpg'
+tags: ['successes']
+pubDate: '2022-03-05T15:38:49.000+0100'
 draft: false
 ---
 

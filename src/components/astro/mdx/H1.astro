@@ -1,19 +1,15 @@
 ---
-import type { HTMLAttributes } from "astro/types";
-import Heading from "./Heading.astro";
+import type { HTMLAttributes } from 'astro/types'
+import Heading from './Heading.astro'
 
-type Props = HTMLAttributes<"h3"> & {
-  slot: string;
-};
+type Props = HTMLAttributes<'h3'> & {
+	slot: string
+}
 
-const { props } = Astro;
-const childContent = await Astro.slots.render("default");
+const { props } = Astro
+const childContent = await Astro.slots.render('default')
 ---
 
-<Heading
-  as="h1"
-  class="font-display text-5xl font-bold leading-tight"
-  {...props}
->
-  {childContent}
+<Heading as="h1" class="font-display text-5xl font-bold leading-tight" {...props}>
+	{childContent}
 </Heading>

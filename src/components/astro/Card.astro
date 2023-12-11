@@ -1,11 +1,11 @@
 ---
 interface Props {
-	title: string;
-	body: string;
-	href: string;
+	title: string
+	body: string
+	href: string
 }
 
-const { href, title, body } = Astro.props;
+const { href, title, body } = Astro.props
 ---
 
 <li class="link-card">
@@ -20,38 +20,34 @@ const { href, title, body } = Astro.props;
 	</a>
 </li>
 
-
 <script>
 	document.querySelectorAll('span.delete').forEach((span) => {
 		span.addEventListener('click', async (e) => {
-			e.preventDefault();
-			e.stopPropagation();
-	
-			const title = (span as HTMLElement).dataset.title || '';
-			const encTitle = encodeURIComponent(title);
-			const url = `/api/resources.json?title=${encTitle}`;
-	
+			e.preventDefault()
+			e.stopPropagation()
+
+			const title = (span as HTMLElement).dataset.title || ''
+			const encTitle = encodeURIComponent(title)
+			const url = `/api/resources.json?title=${encTitle}`
+
 			try {
-				const res = await fetch(url, { method: 'DELETE' });
-			if (res.ok) {
-				span.parentElement?.remove();
-			}
+				const res = await fetch(url, { method: 'DELETE' })
+				if (res.ok) {
+					span.parentElement?.remove()
+				}
 			} catch (err) {
-				console.log(err);
+				console.log(err)
 			}
-		});
-	});
-	</script>
-	
-
-
+		})
+	})
+</script>
 
 <style>
 	.link-card {
 		list-style: none;
 		display: flex;
 		padding: 1px;
-		background-color: #23262d;
+
 		background-image: none;
 		background-size: 400%;
 		border-radius: 7px;
@@ -65,8 +61,7 @@ const { href, title, body } = Astro.props;
 		line-height: 1.4;
 		padding: calc(1.5rem - 1px);
 		border-radius: 8px;
-		color: white;
-		background-color: #23262d;
+
 		opacity: 0.8;
 	}
 	h2 {

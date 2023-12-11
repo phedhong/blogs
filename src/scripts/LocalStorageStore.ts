@@ -1,77 +1,80 @@
-// Source: https://github.com/joshnuss/svelte-local-storage-store
-// https://github.com/joshnuss/svelte-local-storage-store/blob/master/index.ts
-// Represents version v0.4.0 (2023-01-18)
+import { BROWSER } from 'esm-env'
+import { writable as internal, get, type Writable } from 'svelte/store'
 
-import { BROWSER } from 'esm-env';
-import { writable as internal, get, type Writable } from 'svelte/store';
-
-declare type Updater<T> = (value: T) => T;
-declare type StoreDict<T> = { [key: string]: Writable<T> };
+declare type Updater<T> = (value: T) => T
+declare type StoreDict<T> = { [key: string]: Writable<T> }
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const stores: StoreDict<any> = {};
+const stores: StoreDict<any> = {}
 
 interface Serializer<T> {
-  parse(text: string): T;
-  stringify(object: T): string;
+	parse(text: string): T
+	stringify(object: T): string
 }
 
-type StorageType = 'local' | 'session';
+type StorageType = 'local' | 'session'
 
 interface Options<T> {
-  serializer?: Serializer<T>;
-  storage?: StorageType;
+	serializer?: Serializer<T>
+	storage?: StorageType
 }
 
-function getStorage(type: StorageType) {
-  return type === 'local' ? localStorage : sessionStorage;
+const getStorage = (type: StorageType) => {
+	return type === 'local' ? localStorage : sessionStorage
 }
 
-export function localStorageStore<T>(key: string, initialValue: T, options?: Options<T>): Writable<T> {
-  const serializer = options?.serializer ?? JSON;
-  const storageType = options?.storage ?? 'local';
+export function localStorageStore<T>(
+	key: string,
+	initialValue: T,
+	options?: Options<T>
+): Writable<T> {
+	const serializer = options?.serializer ?? JSON
+	const storageType = options?.storage ?? 'local'
 
-  function updateStorage(key: string, value: T) {
-    if (!BROWSER) return;
+	const toString = (value: T) => JSON.stringify(value, null, 2) // helper function
+	const toObj = JSON.parse // helper function
 
-    getStorage(storageType).setItem(key, serializer.stringify(value));
-  }
+	function updateStorage(key: string, value: T) {
+		if (!BROWSER) return
 
-  if (!stores[key]) {
-    const store = internal(initialValue, (set) => {
-      const json = BROWSER ? getStorage(storageType).getItem(key) : null;
+		getStorage(storageType).setItem(key, serializer.stringify(value))
+	}
 
-      if (json) {
-        set(<T>serializer.parse(json));
-      }
+	if (!stores[key]) {
+		const store = internal(initialValue, (set) => {
+			const json = BROWSER ? getStorage(storageType).getItem(key) : null
 
-      if (BROWSER) {
-        const handleStorage = (event: StorageEvent) => {
-          if (event.key === key) set(event.newValue ? serializer.parse(event.newValue) : null);
-        };
+			if (json) {
+				set(<T>serializer.parse(json))
+			}
 
-        window.addEventListener('storage', handleStorage);
+			if (BROWSER) {
+				const handleStorage = (event: StorageEvent) => {
+					if (event.key === key) set(event.newValue ? serializer.parse(event.newValue) : null)
+				}
 
-        return () => window.removeEventListener('storage', handleStorage);
-      }
-    });
+				window.addEventListener('storage', handleStorage)
 
-    const { subscribe, set } = store;
+				return () => window.removeEventListener('storage', handleStorage)
+			}
+		})
 
-    stores[key] = {
-      set(value: T) {
-        updateStorage(key, value);
-        set(value);
-      },
-      update(updater: Updater<T>) {
-        const value = updater(get(store));
+		const { subscribe, set } = store
 
-        updateStorage(key, value);
-        set(value);
-      },
-      subscribe
-    };
-  }
+		stores[key] = {
+			set(value: T) {
+				updateStorage(key, value)
+				set(value)
+			},
+			update(updater: Updater<T>) {
+				const value = updater(get(store))
 
-  return stores[key];
+				updateStorage(key, value)
+				set(value)
+			},
+			subscribe
+		}
+	}
+
+	return stores[key]
 }

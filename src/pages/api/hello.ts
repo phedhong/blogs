@@ -1,11 +1,58 @@
-import type { APIRoute } from "astro";
+import type { APIRoute } from 'astro'
 
-import { deleteResource, addResource, listResources } from "@scripts/resources";
+import { deleteResource, addResource, listResources } from '@scripts/resources'
 
-export const del: APIRoute = async ({ request }) => {
-  const title = new URL(request.url).searchParams.get("title");
-  if (!title) return new Response(null, { status: 400 });
+// export const del: APIRoute = async ({ request }) => {
+//   const title = new URL(request.url).searchParams.get("title");
+//   if (!title) return new Response(null, { status: 400 });
 
-  await deleteResource(title);
-  return new Response(null, { status: 204 });
-};
+//   await deleteResource(title);
+//   return new Response(null, { status: 204 });
+// };
+
+export const GET: APIRoute = ({ params, request }) => {
+	return new Response(
+		JSON.stringify({
+			body: 'This was a GET!'
+		})
+	)
+}
+
+export const POST: APIRoute = async ({ request }) => {
+	const data = await request.formData()
+	const name = data.get('name')
+	const email = data.get('email')
+	const body = data.get('body')
+	// Validate the data - you'll probably want to do more than this
+	if (!name || !email || !body) {
+		return new Response(
+			JSON.stringify({
+				body: 'Missing required fields'
+			}),
+			{ status: 400 }
+		)
+	}
+	// Do something with the data, then return a success response
+	return new Response(
+		JSON.stringify({
+			body: 'Success!'
+		}),
+		{ status: 200 }
+	)
+}
+
+export const DELETE: APIRoute = ({ request }) => {
+	return new Response(
+		JSON.stringify({
+			body: 'This was a DELETE!'
+		})
+	)
+}
+
+export const ALL: APIRoute = ({ request }) => {
+	return new Response(
+		JSON.stringify({
+			body: `This was a ${request.method}!`
+		})
+	)
+}

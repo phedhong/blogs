@@ -1,13 +1,15 @@
 ---
-import Layout from '@layouts/Layout.astro';
-import { Debug } from 'astro:components';
+import Layout from '@layouts/Layout.astro'
+import App from '@components/forms/App.svelte'
+import Todos from '@components/forms/Todos.svelte'
 
+let models = [
+	{ id: 1, title: 'signin', fields: { name: 'name', password: 'password', username: 'username' } }
+]
 
+const collections = 'Home'
 ---
 
 <Layout title="Home">
-
-  <!-- <Debug {resp} /> -->
-
-
+	<App client:only="svelte" />
 </Layout>

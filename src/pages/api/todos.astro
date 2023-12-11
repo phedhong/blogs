@@ -1,0 +1,9 @@
+---
+export const partial = true
+
+import Todos from '@components/forms/Todos.svelte'
+import Layout from '@layouts/_slots/GridAreaSlot.astro'
+import App from '@components/forms/App.svelte'
+---
+
+<App client:only="svelte" />

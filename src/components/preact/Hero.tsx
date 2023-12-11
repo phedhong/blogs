@@ -1,31 +1,30 @@
 export default function Hero() {
-  return (
-    <div
-      class="w-full flex px-8 py-10 min-h-[24em] justify-center items-center flex-col gap-8 bg-cover bg-center bg-no-repeat bg-gray-100 rounded-xl text-white"
-      style="background-image:linear-gradient(rgba(0, 0, 40, 0.8),rgba(0, 0, 40, 0.8)), url('/gallery/hero-bg.webp');"
-    >
-      <div class="space-y-4 text-center">
-        <h1 class="text-4xl inline-block font-bold">Fresh Components Beta</h1>
-        <p class="text-xl max-w-lg text-blue-100">
-          Fresh Components is a collection of components built with Preact and
-          Tailwind CSS.
-        </p>
-      </div>
+	return (
+		<div
+			class="flex min-h-[24em] w-full flex-col items-center justify-center gap-8 rounded-xl bg-gray-100 bg-cover bg-center bg-no-repeat px-8 py-10 text-white"
+			style="background-image:linear-gradient(rgba(0, 0, 40, 0.8),rgba(0, 0, 40, 0.8)), url('/gallery/hero-bg.webp');"
+		>
+			<div class="space-y-4 text-center">
+				<h1 class="inline-block text-4xl font-bold">Fresh Components Beta</h1>
+				<p class="max-w-lg text-xl text-blue-100">
+					Fresh Components is a collection of components built with Preact and Tailwind CSS.
+				</p>
+			</div>
 
-      <div class="flex flex-col md:flex-row items-center">
-        <a
-          href="#"
-          class="block mt-4 text-blue-600 cursor-pointer inline-flex items-center group text-blue-800 px-8 py-2 rounded-md hover:bg-blue-50 font-bold"
-        >
-          Sign Up{" "}
-        </a>
-        <a
-          href="#"
-          class="block mt-4 transition-colors text-blue-400 cursor-pointer inline-flex items-center group px-4 py-2 hover:text-blue-100"
-        >
-          Documentation IconChevronRight
-        </a>
-      </div>
-    </div>
-  );
+			<div class="flex flex-col items-center md:flex-row">
+				<a
+					href="#"
+					class="group mt-4 block inline-flex cursor-pointer items-center rounded-md px-8 py-2 font-bold text-blue-600 text-blue-800 hover:bg-blue-50"
+				>
+					Sign Up{' '}
+				</a>
+				<a
+					href="#"
+					class="group mt-4 block inline-flex cursor-pointer items-center px-4 py-2 text-blue-400 transition-colors hover:text-blue-100"
+				>
+					Documentation IconChevronRight
+				</a>
+			</div>
+		</div>
+	)
 }

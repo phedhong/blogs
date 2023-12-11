@@ -1,48 +1,85 @@
 ---
-
 import '@styles/global.css'
+import '@styles/themes.css'
 
-import GridAreaSlot from "./_slots/GridAreaSlot.astro"
+import GridAreaSlot from './_slots/GridAreaSlot.astro'
+import GoTop from './_elements/GoTop.astro'
+import BaseHead from './_elements/BaseHead.astro'
+// import Search from './_elements/Search.astro'
+import Search from '@components/Search'
 
-import BaseHead from "./_elements/BaseHead.astro"
-import Header from '@components/preact/Header'
-import Footer from '@components/preact/Footer'
-import Breadcrumbs from '@components/astro/Breadcrumbs.astro'
-import {Alert, alert}  from '@components/svelte/alert'
+import Header from './_elements/Header'
+import Footer from './_elements/Footer'
 
-const d = true;
+import Breadcrumbs from './_elements/Breadcrumbs.astro'
+import { Alert } from '@components/svelte/alert'
 
+const d = true
 
-const { title } = Astro.props.frontmatter || Astro.props;
+// const debugs =JSON.stringify(Astro)
+const debugs = Object.keys(Astro).filter((k) => k !== `clientAddress`)
 
+const messages = JSON.stringify(
+	debugs.map((item) => ({ title: item, value: Astro[item] || '' })),
+	null,
+	2
+)
+// console.log(messages)
+const { title } = Astro.props.frontmatter || Astro.props
 ---
 
 <html lang="en" data-theme="dark">
-  <head> <BaseHead {title} /> </head>
+	<head> <BaseHead {title} /></head>
 
-  <body class="h-full grid grid-rows-[auto_1fr_auto] gap-1">
-    <Header />
-    <div class="overflow-y-auto"> <slot /></div>
-    <Footer  />
-  </body>
-        {d && <Alert client:visible />}
+	<body class="grid h-screen grid-rows-[auto_1fr_auto]">
+		<div>
+			<Header />
+		</div>
+		<div class="p-page">
+			<div class="p-hd"><slot name="p-hd">(Header)</slot></div>
+			<div class="p-sd"><slot name="p-sd">(Side)</slot></div>
+			<div class="p-ct"><slot>(Content)</slot></div>
+			<div class="p-ft"><slot name="p-ft">(Footer)</slot></div>
+			<div class="p-ad"><div class="sticky start-0 top-0 py-8"><slot name="p-ad" /></div></div>
+		</div>
+		<GoTop />
+		<!-- <Footer  />  -->
 
+		{d && <Alert {messages} />}
+		<style is:global>
+			.p-hd {
+				grid-area: hd;
+			}
+			.p-sd {
+				grid-area: sd;
+			}
+			.p-ad {
+				grid-area: ad;
+			}
+			.p-ft {
+				grid-area: ft;
+			}
+			.p-ct {
+				grid-area: ct;
+			}
+
+			.p-page {
+				display: grid;
+				gap: 10px;
+				min-height: 100%;
+				grid-auto-rows: auto 1fr auto;
+				grid-auto-columns: auto 1fr auto;
+				grid-template-areas:
+					'. hd hd'
+					'sd ct ad'
+					'ft ft ad';
+			}
+
+			div {
+				border: thin solid var(--muted-border-color);
+				margin: 0 atuo;
+				padding: 2px;
+			}
+		</style>
+	</body>
 </html>
-
-
-
-<style is:global>
-
-  body {
-    margin: 0 auto;
-    width: 95vw;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: var(--background-color);
-    color: var(--color);
-  }
-
-  div {
-    border: thin solid var(--muted-color);
-    margin: 2px;
-  }
-</style>

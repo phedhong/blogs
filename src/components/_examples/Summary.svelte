@@ -1,38 +1,37 @@
 <script>
-
-	export let title;
-	export let datePublished;
-	export let seoMetaDescription;
-	export let slug;
+	export let title
+	export let datePublished
+	export let seoMetaDescription
+	export let slug
 
 	/**
 	 * @param event {MouseEvent} - click
 	 */
 	const handleMouseEnter = (event) => {
-		let element = /** @type {HTMLElement} */ (event.target);
-		element.style.cursor = 'pointer';
-	};
+		let element = /** @type {HTMLElement} */ (event.target)
+		element.style.cursor = 'pointer'
+	}
 
 	/**
 	 * @param event {MouseEvent} - click
 	 */
 	const handleMouseLeave = (event) => {
-		let element = /** @type {HTMLElement} */ (event.target);
-		element.style.cursor = 'default';
-	};
+		let element = /** @type {HTMLElement} */ (event.target)
+		element.style.cursor = 'default'
+	}
 
 	const handleMouseDown = (event) => {
 		// only override click when user clicks inside element but not on an anchor tag
 		if (event.target.tagName !== 'A') {
-			window.location.assign(`/${slug}`);
+			window.location.assign(`/${slug}`)
 		}
-	};
+	}
 
 	const dateString = new Date(datePublished).toLocaleDateString('en-GB', {
 		day: 'numeric',
-		month: 'short',
-	});
-	const idString = `blog-post-summary-${slug}`;
+		month: 'short'
+	})
+	const idString = `blog-post-summary-${slug}`
 </script>
 
 <div
@@ -80,7 +79,7 @@
 	.content:focus,
 	.content:hover {
 		border-color: var(--color-theme-4);
-		background-color: var(--color-theme-4);
+
 		box-shadow: var(spacing-0) var(--spacing-0) var(--spacing-1) var(--spacing-0)
 			var(--color-theme-4-alpha-20);
 		color: var(--color-accent);

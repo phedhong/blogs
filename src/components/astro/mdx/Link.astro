@@ -1,14 +1,14 @@
 ---
 type Props = {
-  href: string;
-};
+	href: string
+}
 
-const { href } = Astro.props;
+const { href } = Astro.props
 ---
 
 <a
-  href={href}
-  class="inline border-b border-link border-opacity-0 leading-normal text-link transition duration-100 ease-in hover:border-opacity-100 dark:text-link-dark"
+	href={href}
+	class="border-link text-link dark:text-link-dark inline border-b border-opacity-0 leading-normal transition duration-100 ease-in hover:border-opacity-100"
 >
-  <slot />
+	<slot />
 </a>

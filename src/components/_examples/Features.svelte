@@ -25,7 +25,7 @@
 			body: 'Supports all forms of iconography for complete control, including: unicode, emoji, vector, or SVG-based icon systems.',
 			icon: 'fa-icons'
 		}
-	];
+	]
 </script>
 
 <div class="space-y-4 md:space-y-10">

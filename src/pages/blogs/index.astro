@@ -1,27 +1,24 @@
 ---
-
 import Layout from '@layouts/Layout.astro'
-import BlogPost from '@components/astro/BlogPost.astro';
-import { getCollection } from "astro:content";
-import { Debug } from 'astro:components'
+import BlogPost from '@components/astro/BlogPost.astro'
+import { getCollection } from 'astro:content'
+import Breadcrumbs from '@layouts/_elements/Breadcrumbs.astro'
 
-const allPosts = await getCollection('blogs');
+const allPosts = await getCollection('blogs')
 
-
-const title = "My Blogs";
-
-
+const title = 'My Blogs'
 ---
 
 <Layout title={title}>
+	<div slot="p-hd">
+		<h2 class="text-3xl font-extrabold capitalize leading-none tracking-tight">
+			{title}
+		</h2>
+		<Breadcrumbs />
+	</div>
 
-  
-  <p>在这里，我将分享我的学习 Astro 的之旅。</p>
-  <ul>
-    {
-      allPosts.map((post) => 
-      <BlogPost url={ `blogs/${post.slug}` } title={post.data.title} /> )
-    }
-
-  </ul>
+	<p>在这里，我将分享我的学习 Astro 的之旅。</p>
+	<ul>
+		{allPosts.map((post) => <BlogPost url={`blogs/${post.slug}`} title={post.data.title} />)}
+	</ul>
 </Layout>

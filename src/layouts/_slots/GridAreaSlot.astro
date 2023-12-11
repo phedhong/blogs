@@ -1,43 +1,47 @@
 ---
 
-
 ---
 
-
 <div class="p-page">
-  <div class="p-hd">  <slot name="p-hd" > (Header) </slot></div>
-	<div class="p-sd">    <slot name="p-sd" >(Side)</slot></div>	
-	<div class="p-ct"> <slot>(Content)</slot>        </div>
-	<div class="p-ad">      <slot name="p-ad" >(Ad)</slot></div>
-  <div class="p-ft">  <slot name="p-ft" >(Footer)</slot></div>
+	<div class="p-hd"><slot name="p-hd"> (Header)</slot></div>
+	<div class="p-sd"><slot name="p-sd">(Side)</slot></div>
+	<div class="p-ct"><slot>(Content)</slot></div>
+	<div class="p-ad"><slot name="p-ad">(Ad)</slot></div>
+	<div class="p-ft"><slot name="p-ft">(Footer)</slot></div>
 </div>
 
 <style>
-  .p-hd { grid-area: hd;}
-  .p-sd {grid-area: sd;}
-  .p-ad {grid-area: ad;}
-  .p-ft {grid-area: ft;}
-  .p-ct {
-    grid-area: ct;
-    
-  }
+	.p-hd {
+		grid-area: hd;
+	}
+	.p-sd {
+		grid-area: sd;
+	}
+	.p-ad {
+		grid-area: ad;
+	}
+	.p-ft {
+		grid-area: ft;
+	}
+	.p-ct {
+		grid-area: ct;
+	}
 
-  .p-page {
-    display: grid;
-    gap: 10px;
-    min-height:100%;
-    grid-auto-rows: auto 1fr auto;
-    grid-auto-columns: auto 1fr auto;
-    grid-template-areas:
-      "hd hd hd"
-      "sd ct ad"
-      "ft ft ad";
-  }
+	.p-page {
+		display: grid;
+		gap: 10px;
+		min-height: 100%;
+		grid-auto-rows: auto 1fr auto;
+		grid-auto-columns: auto 1fr auto;
+		grid-template-areas:
+			'hd hd hd'
+			'sd ct ad'
+			'ft ft ad';
+	}
 
-  div {
-    border: thin solid var(--muted-border-color);
-    margin: 0 atuo;
-    padding: 2px;
-}
-
+	div {
+		border: thin solid var(--muted-border-color);
+		margin: 0 atuo;
+		padding: 2px;
+	}
 </style>

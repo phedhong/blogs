@@ -1,10 +1,10 @@
-import type { JSX } from "preact";
+import type { JSX } from 'preact'
 
 export default function Button(props: JSX.HTMLAttributes<HTMLButtonElement>) {
-  return (
-    <button
-      {...props}
-      class="px-2 py-1 border-gray-500 border-2 rounded hover:bg-gray-200 transition-colors"
-    />
-  );
+	return (
+		<button
+			{...props}
+			class="rounded border-2 border-gray-500 px-2 py-1 transition-colors hover:bg-gray-200"
+		/>
+	)
 }

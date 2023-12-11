@@ -1,0 +1,27 @@
+---
+import Layout from '@layouts/Layout.astro'
+import CollectionCards from '@components/CollectionCards.astro'
+import Breadcrumbs from '@layouts/_elements/Breadcrumbs.astro'
+import { Collections } from '@layouts/configs'
+
+export async function getStaticPaths() {
+	const collections = Object.keys(Collections).map((category) => ({
+		params: { collections: category }
+	}))
+
+	return collections
+}
+
+const { collections } = Astro.params
+---
+
+<Layout title={collections}>
+	<div slot="p-hd">
+		<h2 class="text-3xl font-extrabold capitalize leading-none tracking-tight">
+			{collections}
+		</h2>
+		<Breadcrumbs />
+	</div>
+
+	<CollectionCards />
+</Layout>
